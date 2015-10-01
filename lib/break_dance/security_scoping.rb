@@ -20,6 +20,11 @@ module BreakDance
         end
       end
 
+      def realy_unsecured
+        RequestStore.store[:security_policy_holder].suppress_security_for = self.name if RequestStore.store[:security_policy_holder]
+        self
+      end
+
       def unsecured
         if RequestStore.store[:security_policy_holder]
           RequestStore.store[:security_policy_holder].suppress_security_for = self.name
